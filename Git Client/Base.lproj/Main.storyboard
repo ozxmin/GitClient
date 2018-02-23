@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,19 +29,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B8H-8s-PVj" id="nIs-oS-MrH">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="107.66666666666667"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="54r-jn-4XO">
-                                            <rect key="frame" x="0.0" y="0.0" width="601" height="107.66666666666667"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="54r-jn-4XO" secondAttribute="height" multiplier="240:43" id="2TX-uo-w2P"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="54r-jn-4XO" firstAttribute="leading" secondItem="nIs-oS-MrH" secondAttribute="leading" id="2Ru-cI-3RI"/>
-                                        <constraint firstItem="54r-jn-4XO" firstAttribute="top" secondItem="nIs-oS-MrH" secondAttribute="top" id="LYd-xx-mID"/>
-                                        <constraint firstAttribute="bottom" secondItem="54r-jn-4XO" secondAttribute="bottom" id="bwt-Bt-UAV"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

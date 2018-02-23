@@ -18,6 +18,10 @@ struct Repos: Codable {
 struct Items: Codable {
     let name: String
     let stargazers_count: Int
+    let owner: Owner
+}
+
+struct Owner: Codable {
     let avatar_url: URL
 }
 

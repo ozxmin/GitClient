@@ -20,9 +20,9 @@
 		EDE4915C203E91750054F9C1 /* Git Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE4915F203E91750054F9C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE49164203E91750054F9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EDE49166203E91750054F9C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDE49166203E91750054F9C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Supporting Files/Assets.xcassets"; sourceTree = "<group>"; };
 		EDE49169203E91750054F9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EDE4916B203E91750054F9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDE4916B203E91750054F9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		EDE4917B203ECAA70054F9C1 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,16 +37,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED7E82F02040BC06008EC9A9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EDE49166203E91750054F9C1 /* Assets.xcassets */,
-				EDE49168203E91750054F9C1 /* LaunchScreen.storyboard */,
-				EDE4916B203E91750054F9C1 /* Info.plist */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		EDE49153203E91750054F9C1 = {
 			isa = PBXGroup;
 			children = (
@@ -68,7 +58,9 @@
 			children = (
 				EDE4915F203E91750054F9C1 /* AppDelegate.swift */,
 				EDE49163203E91750054F9C1 /* Main.storyboard */,
-				ED7E82F02040BC06008EC9A9 /* Supporting Files */,
+				EDE49166203E91750054F9C1 /* Assets.xcassets */,
+				EDE49168203E91750054F9C1 /* LaunchScreen.storyboard */,
+				EDE4916B203E91750054F9C1 /* Info.plist */,
 				EDE4917B203ECAA70054F9C1 /* SearchResults.swift */,
 				ED16848D2040053E0035195E /* GitHubRepo.swift */,
 			);
