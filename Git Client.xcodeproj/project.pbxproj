@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED16848E2040053E0035195E /* GitHubRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16848D2040053E0035195E /* GitHubRepo.swift */; };
 		EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE4915F203E91750054F9C1 /* AppDelegate.swift */; };
-		EDE49162203E91750054F9C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE49161203E91750054F9C1 /* ViewController.swift */; };
 		EDE49165203E91750054F9C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE49163203E91750054F9C1 /* Main.storyboard */; };
 		EDE49167203E91750054F9C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE49166203E91750054F9C1 /* Assets.xcassets */; };
 		EDE4916A203E91750054F9C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE49168203E91750054F9C1 /* LaunchScreen.storyboard */; };
+		EDE4917C203ECAA70054F9C1 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE4917B203ECAA70054F9C1 /* SearchResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED16848D2040053E0035195E /* GitHubRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepo.swift; sourceTree = "<group>"; };
 		EDE4915C203E91750054F9C1 /* Git Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE4915F203E91750054F9C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EDE49161203E91750054F9C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EDE49164203E91750054F9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDE49166203E91750054F9C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDE49169203E91750054F9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDE4916B203E91750054F9C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDE4917B203ECAA70054F9C1 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED7E82F02040BC06008EC9A9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EDE49166203E91750054F9C1 /* Assets.xcassets */,
+				EDE49168203E91750054F9C1 /* LaunchScreen.storyboard */,
+				EDE4916B203E91750054F9C1 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EDE49153203E91750054F9C1 = {
 			isa = PBXGroup;
 			children = (
@@ -55,11 +67,10 @@
 			isa = PBXGroup;
 			children = (
 				EDE4915F203E91750054F9C1 /* AppDelegate.swift */,
-				EDE49161203E91750054F9C1 /* ViewController.swift */,
 				EDE49163203E91750054F9C1 /* Main.storyboard */,
-				EDE49166203E91750054F9C1 /* Assets.xcassets */,
-				EDE49168203E91750054F9C1 /* LaunchScreen.storyboard */,
-				EDE4916B203E91750054F9C1 /* Info.plist */,
+				ED7E82F02040BC06008EC9A9 /* Supporting Files */,
+				EDE4917B203ECAA70054F9C1 /* SearchResults.swift */,
+				ED16848D2040053E0035195E /* GitHubRepo.swift */,
 			);
 			path = "Git Client";
 			sourceTree = "<group>";
@@ -136,7 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDE49162203E91750054F9C1 /* ViewController.swift in Sources */,
+				EDE4917C203ECAA70054F9C1 /* SearchResults.swift in Sources */,
+				ED16848E2040053E0035195E /* GitHubRepo.swift in Sources */,
 				EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
