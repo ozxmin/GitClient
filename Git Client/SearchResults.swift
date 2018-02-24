@@ -27,7 +27,8 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
         if searchBar.text == "" { return }
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let myGitHub = URL(string:"https://api.github.com/search/repositories?q=language:\(query)&page=1&per_page=10")
+            let myGitHub = URL(string:"https://api.github.com/search/repositories?q=language:\(query)&page=1&per_page=20")
+//            let myGitHub = URL(string:"https://api.github.com/search/repositories?q=language:java&page=1&per_page=20")
             guard let URLContents = try? Data(contentsOf: myGitHub!) else { return }
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
@@ -39,29 +40,33 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
             } catch {
                 print("error:==================== \(error.localizedDescription)")
             }
-            print("total_count: \(String(describing: self?.repos?.total_count))")
-            print("incomplete_results: \(String(describing: self?.repos?.incomplete_results))")
-            for each in (self?.repos?.items)! {
-                print("item: \(String(describing: each))")
-            }
+//            print("total_count: \(String(describing: self?.repos?.total_count))")
+//            print("incomplete_results: \(String(describing: self?.repos?.incomplete_results))")
+//            for each in (self?.repos?.items)! {
+//                print("item: \(String(describing: each))")
+//            }
             DispatchQueue.main.async {
-                print("main queue================")
-                let jsonObj = try? JSONSerialization.jsonObject(with: URLContents, options: [])
-                print(jsonObj.debugDescription)
-                
+//                print("main queue================")
+//                let jsonObj = try? JSONSerialization.jsonObject(with: URLContents, options: [])
+//                print(jsonObj.debugDescription)
                 self?.tableView.reloadData()
-                
             }
         }
     }
     
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int { return 1 }
+//    override func numberOfSections(in tableView: UITableView) -> Int { return 1 }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        cell.textLabel?.text = "Nombre: \(String(describing: repos!.items[indexPath.row].name))"
+        let singleRepo = repos?.items[indexPath.row]
+       
+        if let repoCell = cell as? UIRepoCells {
+            repoCell.theRepo = singleRepo
+        }
+        
+//        cell.textLabel?.text = "Nombre: \(String(describing: repos!.items[indexPath.row].name))"
         return cell
     }
     

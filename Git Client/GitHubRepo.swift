@@ -11,14 +11,14 @@ import Foundation
 struct Repos: Codable {
     let total_count: Int
     let incomplete_results: Bool
-    let items: [Items]
+    var items: [Items]
 }
 
 
 struct Items: Codable {
-    let name: String
-    let stargazers_count: Int
-    let owner: Owner
+    let name: String?
+    let stargazers_count: Int?
+    let owner: Owner?
 }
 
 struct Owner: Codable {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED16848E2040053E0035195E /* GitHubRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16848D2040053E0035195E /* GitHubRepo.swift */; };
+		ED7E82F22040DFBD008EC9A9 /* UIRepoCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */; };
 		EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE4915F203E91750054F9C1 /* AppDelegate.swift */; };
 		EDE49165203E91750054F9C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE49163203E91750054F9C1 /* Main.storyboard */; };
 		EDE49167203E91750054F9C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE49166203E91750054F9C1 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		ED16848D2040053E0035195E /* GitHubRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepo.swift; sourceTree = "<group>"; };
+		ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRepoCells.swift; sourceTree = "<group>"; };
 		EDE4915C203E91750054F9C1 /* Git Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE4915F203E91750054F9C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE49164203E91750054F9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				EDE4916B203E91750054F9C1 /* Info.plist */,
 				EDE4917B203ECAA70054F9C1 /* SearchResults.swift */,
 				ED16848D2040053E0035195E /* GitHubRepo.swift */,
+				ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */,
 			);
 			path = "Git Client";
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 				EDE4917C203ECAA70054F9C1 /* SearchResults.swift in Sources */,
 				ED16848E2040053E0035195E /* GitHubRepo.swift in Sources */,
 				EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */,
+				ED7E82F22040DFBD008EC9A9 /* UIRepoCells.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
