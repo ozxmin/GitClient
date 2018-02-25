@@ -9,16 +9,30 @@
 import UIKit
 
 class UIRepoCells: UITableViewCell {
-
-    @IBOutlet weak var RepoNameLabel: UILabel!
     
-    var theRepo: Items? {
-        didSet { updateUI() }
-    }
+    @IBOutlet weak var repoNameLabel: UILabel!
+    @IBOutlet weak var starCountLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var repoImageView: UIImageView!
+    
+    var repoInfo: Items? { didSet { updateUI() } }
 
     private func updateUI() {
+        guard let theRepo = repoInfo else { return }
+        repoNameLabel.text = theRepo.name
+        starCountLabel.text = String(describing: theRepo.stargazers_count).appending(" ⭐️")
+        descriptionLabel.text = theRepo.description
+        let smallImageURL = URL(string: String(describing: theRepo.owner!.avatar_url).appending("&s=100"))!
         
-        RepoNameLabel.text = theRepo?.name
-        print("Repo Name: \(String(describing: theRepo?.name))")
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            var repoImage: UIImage?
+            if let imageData = try? Data(contentsOf: smallImageURL) {
+                repoImage = UIImage(data: imageData)
+//                    print(repoImage!)
+            }
+            DispatchQueue.main.async {
+                self?.repoImageView.image = repoImage
+            }
+        }
     }
 }

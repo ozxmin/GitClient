@@ -14,10 +14,10 @@ struct Repos: Codable {
     var items: [Items]
 }
 
-
 struct Items: Codable {
     let name: String?
-    let stargazers_count: Int?
+    let stargazers_count: Int
+    let description: String
     let owner: Owner?
 }
 

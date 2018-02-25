@@ -12,13 +12,16 @@ import UIKit
 
 class SearchResults: UITableViewController, UISearchBarDelegate {
    
-    var repos: Repos?
+    var JSONDataRepos: Repos?
+    var imageRepos: [UIImage]?
     
     @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -26,14 +29,14 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
         guard let query = searchBar.text  else { return }
         if searchBar.text == "" { return }
         
+        
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             let myGitHub = URL(string:"https://api.github.com/search/repositories?q=language:\(query)&page=1&per_page=20")
-//            let myGitHub = URL(string:"https://api.github.com/search/repositories?q=language:java&page=1&per_page=20")
             guard let URLContents = try? Data(contentsOf: myGitHub!) else { return }
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             do {
-                self?.repos = try decoder.decode(Repos.self, from: URLContents)
+                self?.JSONDataRepos = try decoder.decode(Repos.self, from: URLContents)
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("error:=================== \(type)")
                 print("context:================= \(context)")
@@ -46,32 +49,43 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
 //                print("item: \(String(describing: each))")
 //            }
             DispatchQueue.main.async {
+//                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+//                    let repoImage = UIImage(data: imageData)
+//                    //                print(repoImage!)
+//                    DispatchQueue.main.async { self?.repoImageView.image = repoImage }
+//                }
+
 //                print("main queue================")
 //                let jsonObj = try? JSONSerialization.jsonObject(with: URLContents, options: [])
 //                print(jsonObj.debugDescription)
                 self?.tableView.reloadData()
             }
+            
+//            if let imageData = try? Data(contentsOf: smallImageURL) {
+//                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+//                    let repoImage = UIImage(data: imageData)
+//                    DispatchQueue.main.async { self?.repoImageView.image = repoImage }
+//                }
+//            }
+
         }
+        searchBar.resignFirstResponder()
     }
     
     
     // MARK: - Table view data source
-//    override func numberOfSections(in tableView: UITableView) -> Int { return 1 }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        let singleRepo = repos?.items[indexPath.row]
+        let singleRepo = JSONDataRepos?.items[indexPath.row]
        
         if let repoCell = cell as? UIRepoCells {
-            repoCell.theRepo = singleRepo
+            repoCell.repoInfo = singleRepo
         }
-        
-//        cell.textLabel?.text = "Nombre: \(String(describing: repos!.items[indexPath.row].name))"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let repositrycount = repos?.items.count {
+        if let repositrycount = JSONDataRepos?.items.count {
             return repositrycount
         }
         return 0
