@@ -12,10 +12,7 @@ import UIKit
 
 class SearchResults: UITableViewController, UISearchBarDelegate {
    
-    
-    
     @IBOutlet weak var searchBar: UISearchBar!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +22,17 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
     }
     
     let gitHubAPI = GitHubAPIRequest()
-    var JSONDataRepos: Repos?
-    
+    lazy var JSONDataRepos = [Items]()
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text  else { return }
         if searchBar.text == "" { return }
-        
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.JSONDataRepos = self?.gitHubAPI.fetchRepositories(for: query)
+            if let jsonWraper = self?.gitHubAPI.fetchRepositories(for: query) {
+                self?.JSONDataRepos =  jsonWraper.items
+            }
             DispatchQueue.main.async { self?.tableView.reloadData() }
         }
-        
         searchBar.resignFirstResponder()
     }
     
@@ -44,8 +40,8 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        let singleRepo = JSONDataRepos?.items[indexPath.row]
-        print(indexPath.row)
+        let singleRepo = JSONDataRepos[indexPath.row]
+//        shouldFetchMoreRepositories(for: indexPath.row)
        
         if let repoCell = cell as? UIRepoCells {
             repoCell.repoInfo = singleRepo
@@ -54,11 +50,33 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let repositrycount = JSONDataRepos?.items.count { return repositrycount }
-        else { return 0 }
+        print("========table count\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \(JSONDataRepos.count)")
+        return JSONDataRepos.count
+        
     }
     
-
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("items: \(indexPath.row), repos: \(JSONDataRepos.count) ")
+        if indexPath.row == JSONDataRepos.count-2 {
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                if let newRepos = self?.gitHubAPI.fetchNextPage()?.items {
+                    self?.JSONDataRepos.append(contentsOf: newRepos)
+                    print(newRepos)
+                }
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    
+                }
+            }
+        }
+    }
+//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        let lastElement = dataSource.count - 1
+//        if indexPath.row == lastElement {
+//            // handle your logic here to get more items, add it to dataSource and reload tableview
+//        }
+//    }
+    
     
 
     /*

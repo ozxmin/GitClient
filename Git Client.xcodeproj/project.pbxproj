@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED0CD8152042891500DDA7A9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0CD8142042891500DDA7A9 /* File.swift */; };
-		ED16848E2040053E0035195E /* GitHubRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16848D2040053E0035195E /* GitHubRepo.swift */; };
+		ED0CD8152042891500DDA7A9 /* GitHubAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0CD8142042891500DDA7A9 /* GitHubAPIRequest.swift */; };
+		ED16848E2040053E0035195E /* RepoStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16848D2040053E0035195E /* RepoStructure.swift */; };
 		ED7E82F22040DFBD008EC9A9 /* UIRepoCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */; };
 		EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE4915F203E91750054F9C1 /* AppDelegate.swift */; };
 		EDE49165203E91750054F9C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE49163203E91750054F9C1 /* Main.storyboard */; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		ED0CD8142042891500DDA7A9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		ED16848D2040053E0035195E /* GitHubRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepo.swift; sourceTree = "<group>"; };
+		ED0CD8142042891500DDA7A9 /* GitHubAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIRequest.swift; sourceTree = "<group>"; };
+		ED16848D2040053E0035195E /* RepoStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoStructure.swift; sourceTree = "<group>"; };
 		ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRepoCells.swift; sourceTree = "<group>"; };
 		EDE4915C203E91750054F9C1 /* Git Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE4915F203E91750054F9C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,14 +60,14 @@
 		EDE4915E203E91750054F9C1 /* Git Client */ = {
 			isa = PBXGroup;
 			children = (
-				ED0CD8142042891500DDA7A9 /* File.swift */,
+				ED0CD8142042891500DDA7A9 /* GitHubAPIRequest.swift */,
 				EDE4915F203E91750054F9C1 /* AppDelegate.swift */,
 				EDE49163203E91750054F9C1 /* Main.storyboard */,
 				EDE49166203E91750054F9C1 /* Assets.xcassets */,
 				EDE49168203E91750054F9C1 /* LaunchScreen.storyboard */,
 				EDE4916B203E91750054F9C1 /* Info.plist */,
 				EDE4917B203ECAA70054F9C1 /* SearchResults.swift */,
-				ED16848D2040053E0035195E /* GitHubRepo.swift */,
+				ED16848D2040053E0035195E /* RepoStructure.swift */,
 				ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */,
 			);
 			path = "Git Client";
@@ -145,9 +145,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED0CD8152042891500DDA7A9 /* File.swift in Sources */,
+				ED0CD8152042891500DDA7A9 /* GitHubAPIRequest.swift in Sources */,
 				EDE4917C203ECAA70054F9C1 /* SearchResults.swift in Sources */,
-				ED16848E2040053E0035195E /* GitHubRepo.swift in Sources */,
+				ED16848E2040053E0035195E /* RepoStructure.swift in Sources */,
 				EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */,
 				ED7E82F22040DFBD008EC9A9 /* UIRepoCells.swift in Sources */,
 			);

@@ -9,8 +9,6 @@
 import Foundation
 
 struct Repos: Codable {
-    let total_count: Int
-    let incomplete_results: Bool
     var items: [Items]
 }
 
