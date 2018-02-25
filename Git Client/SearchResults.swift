@@ -12,10 +12,10 @@ import UIKit
 
 class SearchResults: UITableViewController, UISearchBarDelegate {
    
-    var JSONDataRepos: Repos?
-    var imageRepos: [UIImage]?
+    
     
     @IBOutlet weak var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,52 +23,20 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
-
+    
+    let gitHubAPI = GitHubAPIRequest()
+    var JSONDataRepos: Repos?
+    
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         guard let query = searchBar.text  else { return }
         if searchBar.text == "" { return }
         
-        
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let myGitHub = URL(string:"https://api.github.com/search/repositories?q=language:\(query)&page=1&per_page=20")
-            guard let URLContents = try? Data(contentsOf: myGitHub!) else { return }
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            do {
-                self?.JSONDataRepos = try decoder.decode(Repos.self, from: URLContents)
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("error:=================== \(type)")
-                print("context:================= \(context)")
-            } catch {
-                print("error:==================== \(error.localizedDescription)")
-            }
-//            print("total_count: \(String(describing: self?.repos?.total_count))")
-//            print("incomplete_results: \(String(describing: self?.repos?.incomplete_results))")
-//            for each in (self?.repos?.items)! {
-//                print("item: \(String(describing: each))")
-//            }
-            DispatchQueue.main.async {
-//                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-//                    let repoImage = UIImage(data: imageData)
-//                    //                print(repoImage!)
-//                    DispatchQueue.main.async { self?.repoImageView.image = repoImage }
-//                }
-
-//                print("main queue================")
-//                let jsonObj = try? JSONSerialization.jsonObject(with: URLContents, options: [])
-//                print(jsonObj.debugDescription)
-                self?.tableView.reloadData()
-            }
-            
-//            if let imageData = try? Data(contentsOf: smallImageURL) {
-//                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-//                    let repoImage = UIImage(data: imageData)
-//                    DispatchQueue.main.async { self?.repoImageView.image = repoImage }
-//                }
-//            }
-
+            self?.JSONDataRepos = self?.gitHubAPI.fetchRepositories(for: query)
+            DispatchQueue.main.async { self?.tableView.reloadData() }
         }
+        
         searchBar.resignFirstResponder()
     }
     
@@ -77,6 +45,7 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
         let singleRepo = JSONDataRepos?.items[indexPath.row]
+        print(indexPath.row)
        
         if let repoCell = cell as? UIRepoCells {
             repoCell.repoInfo = singleRepo
@@ -85,73 +54,12 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let repositrycount = JSONDataRepos?.items.count {
-            return repositrycount
-        }
-        return 0
+        if let repositrycount = JSONDataRepos?.items.count { return repositrycount }
+        else { return 0 }
     }
     
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            repos.remove(at: indexPath.row)
-//            // Delete the row from the data source
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let cell = sender as? UITableViewCell,
-//            let indexPath = tableView.indexPath(for: cell),
-//            let platoDetail = segue.destination as? PlatoDetailViewController {
-//            platoDetail.dataRow = indexPath.row
-//        }
-//    }
 
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
