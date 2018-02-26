@@ -8,12 +8,9 @@
 
 import UIKit
 
-//https://api.github.com/user/repos?page=2&per_page=100
-
 class SearchResults: UITableViewController, UISearchBarDelegate, UISplitViewControllerDelegate {
    
     @IBOutlet weak var searchBar: UISearchBar!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +30,12 @@ class SearchResults: UITableViewController, UISearchBarDelegate, UISplitViewCont
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         repos.removeAll()
         tableView.reloadData()
-//        activityIndicator.startAnimating()
         guard let query = searchBar.text  else { return }
         if searchBar.text == "" { return }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let jsonWraper = self?.gitHubAPI.fetchRepositories(for: query) else { return }
             for repo in jsonWraper.items { self?.repos.append(gitHubRepoData(repoJSON: repo)) }
-            DispatchQueue.main.async {
-//                self?.activityIndicator.stopAnimating()
-                self?.tableView.reloadData()
-            }
+            DispatchQueue.main.async { self?.tableView.reloadData() }
         }
         searchBar.resignFirstResponder()
     }
@@ -60,9 +53,7 @@ class SearchResults: UITableViewController, UISearchBarDelegate, UISplitViewCont
         return self.repos.count
     }
     
-    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("items: \(indexPath.row), repos: \(self.repos.count) ")
         if indexPath.row == self.repos.count - 4 {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 if let newRepos = self?.gitHubAPI.fetchNextPage()?.items {

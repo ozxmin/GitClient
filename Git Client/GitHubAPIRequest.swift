@@ -29,7 +29,7 @@ class GitHubAPIRequest {
         decoder.dateDecodingStrategy = .iso8601
         do { JSONData = try decoder.decode(GitHubJSON.self, from: APIData) }
         catch DecodingError.typeMismatch(let type, let context) {print("error: \(type) context: \(context)") }
-        catch { print("Localized error: \(error.localizedDescription)") }
+        catch { print("GitHubJSON Localized error: \(error.localizedDescription)") }
         return JSONData
     }
     
