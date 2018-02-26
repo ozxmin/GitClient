@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v1d-1x-wga">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="skf-pY-HXt">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Split View Controller-->
+        <scene sceneID="mta-tw-LCy">
+            <objects>
+                <splitViewController id="skf-pY-HXt" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="VhP-RZ-vXu" kind="relationship" relationship="masterViewController" id="IDY-Nc-jIb"/>
+                        <segue destination="Cf0-mL-1Tz" kind="relationship" relationship="detailViewController" id="1RP-Dr-s15"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lsd-Fm-FpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3244" y="-208"/>
+        </scene>
         <!--Search Results-->
         <scene sceneID="gBe-4q-50G">
             <objects>
@@ -79,6 +93,7 @@
                                     <outlet property="repoImageView" destination="u6T-s1-qsf" id="pSu-jz-v6i"/>
                                     <outlet property="repoNameLabel" destination="f2d-v9-dEz" id="GvM-vk-Bfs"/>
                                     <outlet property="starCountLabel" destination="NjP-zd-pmL" id="FaP-Xs-owg"/>
+                                    <segue destination="Cf0-mL-1Tz" kind="showDetail" identifier="repoDetailsID" id="Boo-bc-iGK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -94,25 +109,42 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2qj-Jr-0DE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-773.60000000000002" y="-28.078817733990149"/>
+            <point key="canvasLocation" x="-2319" y="-504"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cCw-5l-62Q">
+        <!--Repo Detail View Controller-->
+        <scene sceneID="Cgg-k2-LAQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v1d-1x-wga" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2mG-cJ-kgK">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="Cf0-mL-1Tz" customClass="RepoDetailViewController" customModule="Git_Client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hTK-fG-MoA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izf-ao-kkf">
+                                <rect key="frame" x="166" y="209" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNi-Xj-Ds6">
+                                <rect key="frame" x="137" y="288" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mps-kj-rsV"/>
+                    </view>
                     <connections>
-                        <segue destination="VhP-RZ-vXu" kind="relationship" relationship="rootViewController" id="n6Y-tF-GSm"/>
+                        <outlet property="repoImageView" destination="cNi-Xj-Ds6" id="fz6-I3-plH"/>
+                        <outlet property="repoName" destination="izf-ao-kkf" id="oGC-yF-eYG"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="quA-KR-9ZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Mh-nB-yky" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1618" y="-28"/>
+            <point key="canvasLocation" x="-2487" y="222"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Boo-bc-iGK"/>
+    </inferredMetricsTieBreakers>
 </document>

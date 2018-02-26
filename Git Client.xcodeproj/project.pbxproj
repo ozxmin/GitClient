@@ -10,6 +10,7 @@
 		ED0CD8152042891500DDA7A9 /* GitHubAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0CD8142042891500DDA7A9 /* GitHubAPIRequest.swift */; };
 		ED16848E2040053E0035195E /* RepoStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16848D2040053E0035195E /* RepoStructure.swift */; };
 		ED7E82F22040DFBD008EC9A9 /* UIRepoCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */; };
+		EDAE10452043D1310042B34B /* RepoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAE10442043D1310042B34B /* RepoDetailViewController.swift */; };
 		EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE4915F203E91750054F9C1 /* AppDelegate.swift */; };
 		EDE49165203E91750054F9C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE49163203E91750054F9C1 /* Main.storyboard */; };
 		EDE49167203E91750054F9C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE49166203E91750054F9C1 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		ED0CD8142042891500DDA7A9 /* GitHubAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIRequest.swift; sourceTree = "<group>"; };
 		ED16848D2040053E0035195E /* RepoStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoStructure.swift; sourceTree = "<group>"; };
 		ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRepoCells.swift; sourceTree = "<group>"; };
+		EDAE10442043D1310042B34B /* RepoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailViewController.swift; sourceTree = "<group>"; };
 		EDE4915C203E91750054F9C1 /* Git Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Git Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE4915F203E91750054F9C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE49164203E91750054F9C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				EDE49168203E91750054F9C1 /* LaunchScreen.storyboard */,
 				EDE4916B203E91750054F9C1 /* Info.plist */,
 				EDE4917B203ECAA70054F9C1 /* SearchResults.swift */,
+				EDAE10442043D1310042B34B /* RepoDetailViewController.swift */,
 				ED16848D2040053E0035195E /* RepoStructure.swift */,
 				ED7E82F12040DFBD008EC9A9 /* UIRepoCells.swift */,
 			);
@@ -150,6 +153,7 @@
 				ED16848E2040053E0035195E /* RepoStructure.swift in Sources */,
 				EDE49160203E91750054F9C1 /* AppDelegate.swift in Sources */,
 				ED7E82F22040DFBD008EC9A9 /* UIRepoCells.swift in Sources */,
+				EDAE10452043D1310042B34B /* RepoDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
