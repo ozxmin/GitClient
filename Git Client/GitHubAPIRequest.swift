@@ -12,6 +12,7 @@ class GitHubAPIRequest {
     private var language: String?
     private var pageNumber = 1
     private let baseURL = "https://api.github.com/search/repositories?q=language:"
+    
     private var GitHubAPIURL: String {
         get {
             let query = language ?? ""
@@ -28,7 +29,7 @@ class GitHubAPIRequest {
         decoder.dateDecodingStrategy = .iso8601
         do { JSONData = try decoder.decode(GitHubJSON.self, from: APIData) }
         catch DecodingError.typeMismatch(let type, let context) {print("error: \(type) context: \(context)") }
-        catch { print("Localized error:==================== \(error.localizedDescription)") }
+        catch { print("Localized error: \(error.localizedDescription)") }
         return JSONData
     }
     

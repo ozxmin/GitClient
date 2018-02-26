@@ -10,9 +10,10 @@ import UIKit
 
 //https://api.github.com/user/repos?page=2&per_page=100
 
-class SearchResults: UITableViewController, UISearchBarDelegate {
+class SearchResults: UITableViewController, UISearchBarDelegate, UISplitViewControllerDelegate {
    
     @IBOutlet weak var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +22,27 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    let gitHubAPI = GitHubAPIRequest()
-    var repos = [gitHubRepoData]()
+    private let gitHubAPI = GitHubAPIRequest()
+    private var repos = [gitHubRepoData]()
+    
+    override func awakeFromNib() {
+        self.splitViewController?.delegate = self
+    }
     
     // MARK: - Search Function
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         repos.removeAll()
+        tableView.reloadData()
+//        activityIndicator.startAnimating()
         guard let query = searchBar.text  else { return }
         if searchBar.text == "" { return }
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let jsonWraper = self?.gitHubAPI.fetchRepositories(for: query) else { return }
             for repo in jsonWraper.items { self?.repos.append(gitHubRepoData(repoJSON: repo)) }
-            DispatchQueue.main.async { self?.tableView.reloadData() }
+            DispatchQueue.main.async {
+//                self?.activityIndicator.stopAnimating()
+                self?.tableView.reloadData()
+            }
         }
         searchBar.resignFirstResponder()
     }
@@ -47,19 +57,16 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("=====table count: \(repos.count)")
         return self.repos.count
-        
     }
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("items: \(indexPath.row), repos: \(self.repos.count) ")
-        if indexPath.row == self.repos.count-2 {
+        if indexPath.row == self.repos.count - 4 {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 if let newRepos = self?.gitHubAPI.fetchNextPage()?.items {
                     for repo in newRepos { self?.repos.append(gitHubRepoData(repoJSON: repo)) }
-                    print(newRepos)
                 }
                 DispatchQueue.main.async { self?.tableView.reloadData() }
             }
@@ -68,15 +75,35 @@ class SearchResults: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        var destinationViewController = segue.destination
+        if let navigationController = destinationViewController as? UINavigationController {
+            destinationViewController = navigationController.visibleViewController ?? destinationViewController
+        }
         if let cell = sender as? UITableViewCell,
             let index = tableView.indexPath(for: cell),
-            let repoDetailView = segue.destination as? RepoDetailViewController {
+            let repoDetailView = destinationViewController as? RepoDetailViewController {
                 let repoData = repos[index.row]
                 repoDetailView.repoInfo = repoData
+                repoDetailView.navigationItem.title = repoData.name
         }
-
-        
     }
     
-
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        if primaryViewController.contents == self {
+            if let _ = secondaryViewController.contents as? RepoDetailViewController { return true }
+        }
+        return false
+    }
+    
 }
+
+
+extension UIViewController {
+    var contents: UIViewController {
+        if let navcon = self as? UINavigationController {
+            return navcon.visibleViewController ?? self
+        } else { return self }
+    }
+}
+
