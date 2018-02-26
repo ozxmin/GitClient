@@ -20,28 +20,28 @@ class GitHubAPIRequest {
         }
     }
     
-    func fetchResults() -> Repos? {
-        var JSONData: Repos?
+    private func fetchData() -> GitHubJSON? {
+        var JSONData: GitHubJSON?
         let queryURL = URL(string: GitHubAPIURL)
         guard let APIData = try? Data(contentsOf: queryURL!) else { return nil }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        do { JSONData = try decoder.decode(Repos.self, from: APIData) }
+        do { JSONData = try decoder.decode(GitHubJSON.self, from: APIData) }
         catch DecodingError.typeMismatch(let type, let context) {print("error: \(type) context: \(context)") }
         catch { print("Localized error:==================== \(error.localizedDescription)") }
         return JSONData
     }
     
-    func fetchRepositories(for language: String) -> Repos? {
+    func fetchRepositories(for language: String) -> GitHubJSON? {
         pageNumber = 1
         self.language = language
-        let JSONRepositories = fetchResults()
+        let JSONRepositories = fetchData()
         return JSONRepositories
     }
     
-    func fetchNextPage() -> Repos? {
+    func fetchNextPage() -> GitHubJSON? {
         pageNumber = pageNumber + 1
-        let JSONRepositories = fetchResults()
+        let JSONRepositories = fetchData()
         return JSONRepositories
     }
     
